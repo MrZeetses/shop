@@ -10,8 +10,8 @@
 // 3. Скопируйте Project URL и anon / publishable key из Project Settings -> API
 //    и вставьте их в две строки ниже (или через кнопку «🔑 Ключи Supabase» на сайте):
 // ============================================================================
-window.STYLE_DEFAULT_SB_URL    = ""; // <-- ВСТАВЬТЕ СЮДА SUPABASE PROJECT URL (например: "https://xyzcompany.supabase.co")
-window.STYLE_DEFAULT_SB_KEY    = ""; // <-- ВСТАВЬТЕ СЮДА SUPABASE ANON / PUBLISHABLE KEY (например: "eyJhbGci..." или "sb_publishable_...")
+window.STYLE_DEFAULT_SB_URL    = "https://zpmapedzbbrfxlmuncbd.supabase.co/rest/v1/"; // <-- ВСТАВЬТЕ СЮДА SUPABASE PROJECT URL (например: "https://xyzcompany.supabase.co")
+window.STYLE_DEFAULT_SB_KEY    = "sb_publishable_Q8bp5yDcT3g-b0K7tnvbfw_RYFYDkMi"; // <-- ВСТАВЬТЕ СЮДА SUPABASE ANON / PUBLISHABLE KEY (например: "eyJhbGci..." или "sb_publishable_...")
 window.STYLE_DEFAULT_SB_BUCKET = "product-images"; // Бакет Supabase Storage для сохранения фото товаров
 window.STYLE_DEFAULT_AI_FN     = "style-ai";       // Имя Supabase Edge Function для ИИ-ассистента
 
