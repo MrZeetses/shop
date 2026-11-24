@@ -88,345 +88,1698 @@ window.STYLE_ORDER_STATUS_META = {
 
 // Начальный каталог товаров (100% соответствие макетам image.png, image_2.png, image_3.png, image_5.png)
 window.STYLE_SEED_PRODUCTS = [
-  // === МУЖЧИНАМ (image.png) ===
   {
-    id: "prod-m-1",
-    sku: "WO-8410",
-    category_slug: "men",
-    subcategory: "Верхняя одежда",
-    brand: "Urban Trend",
-    name: "Пальто шерстяное классическое",
-    description: "Элегантное двубортное мужское пальто из премиальной смесовой шерсти темно-синего оттенка. Идеальная посадка по фигуре, ветрозащитный воротник и теплая подкладка для осени и зимы.",
-    purchase_price: 21000,
-    base_price: 42000,
-    old_price: 60000,
-    discount_percent: 30,
-    badge: "SALE -30%",
-    sizes: ["S", "M", "L", "XL"],
-    colors: [
-      { name: "Темно-синий", hex: "#192d4b" },
-      { name: "Графитовый", hex: "#2d2f31" },
-      { name: "Черный", hex: "#0d0f12" }
+    "id": "prod-m-1",
+    "sku": "WO-8410",
+    "category_slug": "men",
+    "subcategory": "Верхняя одежда",
+    "brand": "Urban Trend",
+    "name": "Пальто шерстяное классическое",
+    "description": "Элегантное двубортное мужское пальто из премиальной смесовой шерсти темно-синего оттенка.",
+    "purchase_price": 21000,
+    "base_price": 42000,
+    "old_price": 60000,
+    "discount_percent": 30,
+    "badge": "SALE -30%",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
     ],
-    season: "Осень-Зима '26",
-    image: IMG.men_coat || "assets/images/men_coat.jpg",
-    gallery: [IMG.men_coat || "assets/images/men_coat.jpg", IMG.parka_sketch || ""],
-    stock_qty: 32,
-    min_stock: 5,
-    warehouse: "Основной склад",
-    is_available: true,
-    is_published: true,
-    is_new: false,
-    is_sale: true,
-    popularity: 99
+    "colors": [
+      {
+        "name": "Темно-синий",
+        "hex": "#192d4b"
+      },
+      {
+        "name": "Графитовый",
+        "hex": "#2d2f31"
+      }
+    ],
+    "season": "Осень-Зима '26",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_coat.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_coat.jpg"
+    ],
+    "stock_qty": 32,
+    "min_stock": 5,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": false,
+    "is_sale": true,
+    "popularity": 100,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_coat.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_coat.jpg"
+    ]
   },
   {
-    id: "prod-m-2",
-    sku: "LE-2015",
-    category_slug: "men",
-    subcategory: "Верхняя одежда",
-    brand: "Rock&Roll",
-    name: "Куртка из натуральной кожи",
-    description: "Культовая мужская кожаная куртка-косуха из мягкой натуральной кожи премиальной выделки. Металлическая фурнитура, ветрозащитные молнии и удобные внутренние карманы.",
-    purchase_price: 34000,
-    base_price: 68900,
-    old_price: null,
-    discount_percent: 0,
-    badge: "",
-    sizes: ["M", "L", "XL"],
-    colors: [
-      { name: "Черный", hex: "#0d0f12" },
-      { name: "Шоколадный", hex: "#4f3d37" }
+    "id": "prod-m-2",
+    "sku": "LE-2015",
+    "category_slug": "men",
+    "subcategory": "Верхняя одежда",
+    "brand": "Rock&Roll",
+    "name": "Куртка из натуральной кожи",
+    "description": "Культовая мужская кожаная куртка-косуха из мягкой натуральной кожи премиальной выделки.",
+    "purchase_price": 34000,
+    "base_price": 68900,
+    "old_price": null,
+    "discount_percent": 0,
+    "badge": "",
+    "sizes": [
+      "M",
+      "L",
+      "XL"
     ],
-    season: "Демисезон",
-    image: IMG.men_leather || "assets/images/men_leather.jpg",
-    gallery: [IMG.men_leather || "assets/images/men_leather.jpg", IMG.lookbook_shearling || ""],
-    stock_qty: 19,
-    min_stock: 4,
-    warehouse: "Основной склад",
-    is_available: true,
-    is_published: true,
-    is_new: true,
-    is_sale: false,
-    popularity: 96
+    "colors": [
+      {
+        "name": "Черный",
+        "hex": "#0d0f12"
+      },
+      {
+        "name": "Шоколадный",
+        "hex": "#4f3d37"
+      }
+    ],
+    "season": "Демисезон",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_leather.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_leather.jpg",
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/lookbook_shearling.jpg"
+    ],
+    "stock_qty": 19,
+    "min_stock": 4,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": true,
+    "is_sale": false,
+    "popularity": 99,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_leather.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_leather.jpg",
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/lookbook_shearling.jpg"
+    ]
   },
   {
-    id: "prod-m-3",
-    sku: "WO-4509",
-    category_slug: "men",
-    subcategory: "Верхняя одежда",
-    brand: "Nordic Shield",
-    name: "Парка зимняя утепленная",
-    description: "Утепленная зимняя парка с водоотталкивающим покрытием. Высокий воротник-стойка, капюшон, множество функциональных карманов и защита от морозов до -30°C.",
-    purchase_price: 18000,
-    base_price: 55000,
-    old_price: null,
-    discount_percent: 0,
-    badge: "NEW",
-    sizes: ["M", "L", "XL", "XXL"],
-    colors: [
-      { name: "Оливковый", hex: "#3f4f3c" },
-      { name: "Темно-синий", hex: "#192d4b" },
-      { name: "Черный", hex: "#0d0f12" }
+    "id": "prod-m-3",
+    "sku": "WO-4509",
+    "category_slug": "men",
+    "subcategory": "Верхняя одежда",
+    "brand": "Nordic Shield",
+    "name": "Парка зимняя утепленная",
+    "description": "Утепленная зимняя парка с водоотталкивающим покрытием. Капюшон, защита от морозов до -30°C.",
+    "purchase_price": 18000,
+    "base_price": 55000,
+    "old_price": null,
+    "discount_percent": 0,
+    "badge": "NEW",
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
     ],
-    season: "Зима",
-    image: IMG.men_parka || "assets/images/men_parka.jpg",
-    gallery: [IMG.men_parka || "assets/images/men_parka.jpg", IMG.parka_sketch || ""],
-    stock_qty: 45,
-    min_stock: 5,
-    warehouse: "Основной склад",
-    is_available: true,
-    is_published: true,
-    is_new: true,
-    is_sale: false,
-    popularity: 95
+    "colors": [
+      {
+        "name": "Оливковый",
+        "hex": "#3f4f3c"
+      },
+      {
+        "name": "Темно-синий",
+        "hex": "#192d4b"
+      }
+    ],
+    "season": "Зима",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_parka.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_parka.jpg"
+    ],
+    "stock_qty": 45,
+    "min_stock": 5,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": true,
+    "is_sale": false,
+    "popularity": 98,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_parka.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_parka.jpg"
+    ]
   },
   {
-    id: "prod-m-4",
-    sku: "BO-0419",
-    category_slug: "men",
-    subcategory: "Верхняя одежда",
-    brand: "Casual Sport",
-    name: "Куртка-бомбер демисезонная",
-    description: "Легкая демисезонная куртка-бомбер лаконичного кроя из ветрозащитной мембранной ткани. Эластичные манжеты, воротник-рибана и комфортная посадка на каждый день.",
-    purchase_price: 11500,
-    base_price: 24500,
-    old_price: null,
-    discount_percent: 0,
-    badge: "",
-    sizes: ["XS", "S", "M", "L"],
-    colors: [
-      { name: "Серо-оливковый", hex: "#575e54" },
-      { name: "Графитовый", hex: "#2d2f31" },
-      { name: "Темно-синий", hex: "#192d4b" }
+    "id": "prod-m-4",
+    "sku": "BO-0419",
+    "category_slug": "men",
+    "subcategory": "Верхняя одежда",
+    "brand": "Casual Sport",
+    "name": "Куртка-бомбер демисезонная",
+    "description": "Легкая демисезонная куртка-бомбер лаконичного кроя из ветрозащитной мембранной ткани.",
+    "purchase_price": 11500,
+    "base_price": 24500,
+    "old_price": null,
+    "discount_percent": 0,
+    "badge": "",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
     ],
-    season: "Демисезон",
-    image: IMG.men_bomber || "assets/images/men_bomber.jpg",
-    gallery: [IMG.men_bomber || "assets/images/men_bomber.jpg"],
-    stock_qty: 38,
-    min_stock: 6,
-    warehouse: "Основной склад",
-    is_available: true,
-    is_published: true,
-    is_new: false,
-    is_sale: false,
-    popularity: 90
-  },
-
-  // === ЖЕНЩИНАМ (image_2.png) ===
-  {
-    id: "prod-w-1",
-    sku: "WO-8472",
-    category_slug: "women",
-    subcategory: "Верхняя одежда",
-    brand: "Grace & Style",
-    name: "Пальто шерстяное классическое бежевое",
-    description: "Изысканное женское шерстяное пальто классического кроя в благородном бежевом оттенке Camel. Пояс в комплекте, глубокие накладные карманы и шелковистая подкладка.",
-    purchase_price: 22000,
-    base_price: 45500,
-    old_price: 65000,
-    discount_percent: 30,
-    badge: "SALE -30%",
-    sizes: ["XS", "S", "M", "L", "XL"],
-    colors: [
-      { name: "Светло-бежевый", hex: "#e1d6c6" },
-      { name: "Шоколадный", hex: "#4f3d37" },
-      { name: "Черный", hex: "#0d0f12" }
+    "colors": [
+      {
+        "name": "Серо-оливковый",
+        "hex": "#575e54"
+      },
+      {
+        "name": "Графитовый",
+        "hex": "#2d2f31"
+      }
     ],
-    season: "Осень-Зима '26",
-    image: IMG.women_coat || "assets/images/women_coat.jpg",
-    gallery: [IMG.women_coat || "assets/images/women_coat.jpg"],
-    stock_qty: 27,
-    min_stock: 5,
-    warehouse: "Основной склад",
-    is_available: true,
-    is_published: true,
-    is_new: false,
-    is_sale: true,
-    popularity: 98
+    "season": "Демисезон",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_bomber.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_bomber.jpg"
+    ],
+    "stock_qty": 38,
+    "min_stock": 6,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": false,
+    "is_sale": false,
+    "popularity": 97,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_bomber.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_bomber.jpg"
+    ]
   },
   {
-    id: "prod-w-2",
-    sku: "AV-1180",
-    category_slug: "women",
-    subcategory: "Верхняя одежда",
-    brand: "Bella Vista",
-    name: "Куртка-авиатор утепленная",
-    description: "Стильная женская куртка-авиатор с мягкой меховой отделкой воротника и манжет. Регулируемый ремень по низу, косая молния и надежная защита от холодного ветра.",
-    purchase_price: 28000,
-    base_price: 58900,
-    old_price: null,
-    discount_percent: 0,
-    badge: "",
-    sizes: ["S", "M", "L", "XL"],
-    colors: [
-      { name: "Черный", hex: "#0d0f12" },
-      { name: "Шоколадный", hex: "#4f3d37" }
+    "id": "prod-m-5",
+    "sku": "LE-2099",
+    "category_slug": "men",
+    "subcategory": "Верхняя одежда",
+    "brand": "Rock&Roll",
+    "name": "Дубленка-авиатор мужская с овчиной",
+    "description": "Мужская зимняя дубленка-авиатор из натуральной кожи с теплым меховым воротником.",
+    "purchase_price": 39000,
+    "base_price": 79000,
+    "old_price": 95000,
+    "discount_percent": 17,
+    "badge": "SALE -17%",
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
     ],
-    season: "Осень-Зима '26",
-    image: IMG.women_aviator || "assets/images/women_aviator.jpg",
-    gallery: [IMG.women_aviator || "assets/images/women_aviator.jpg"],
-    stock_qty: 22,
-    min_stock: 4,
-    warehouse: "Основной склад",
-    is_available: true,
-    is_published: true,
-    is_new: true,
-    is_sale: false,
-    popularity: 94
+    "colors": [
+      {
+        "name": "Черный",
+        "hex": "#0d0f12"
+      },
+      {
+        "name": "Шоколадный",
+        "hex": "#4f3d37"
+      }
+    ],
+    "season": "Зима",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/lookbook_shearling.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/lookbook_shearling.jpg"
+    ],
+    "stock_qty": 16,
+    "min_stock": 4,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": true,
+    "is_sale": true,
+    "popularity": 96,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/lookbook_shearling.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/lookbook_shearling.jpg"
+    ]
   },
   {
-    id: "prod-w-3",
-    sku: "PK-6204",
-    category_slug: "women",
-    subcategory: "Верхняя одежда",
-    brand: "Nordic Shield",
-    name: "Парка зимняя с меховой отделкой",
-    description: "Теплая женская зимняя парка оливкового цвета с пушистой меховой опушкой капюшона. Кулиска на талии подчеркивает силуэт, а современный утеплитель сохраняет тепло до -35°C.",
-    purchase_price: 29500,
-    base_price: 62000,
-    old_price: null,
-    discount_percent: 0,
-    badge: "NEW",
-    sizes: ["S", "M", "L", "XL"],
-    colors: [
-      { name: "Оливковый", hex: "#3f4f3c" },
-      { name: "Темно-зеленый", hex: "#233628" },
-      { name: "Темно-синий", hex: "#192d4b" }
+    "id": "prod-m-6",
+    "sku": "WO-8425",
+    "category_slug": "men",
+    "subcategory": "Верхняя одежда",
+    "brand": "Urban Trend",
+    "name": "Пальто кашемировое двубортное Navy",
+    "description": "Премиальное мужское пальто с добавлением натурального кашемира для делового гардероба.",
+    "purchase_price": 26000,
+    "base_price": 54000,
+    "old_price": null,
+    "discount_percent": 0,
+    "badge": "NEW",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
     ],
-    season: "Зима",
-    image: IMG.women_parka || "assets/images/women_parka.jpg",
-    gallery: [IMG.women_parka || "assets/images/women_parka.jpg"],
-    stock_qty: 31,
-    min_stock: 5,
-    warehouse: "Основной склад",
-    is_available: true,
-    is_published: true,
-    is_new: true,
-    is_sale: false,
-    popularity: 93
+    "colors": [
+      {
+        "name": "Индиго",
+        "hex": "#223056"
+      },
+      {
+        "name": "Темно-синий",
+        "hex": "#192d4b"
+      }
+    ],
+    "season": "Осень-Зима '26",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_coat_camel.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_coat_camel.jpg"
+    ],
+    "stock_qty": 24,
+    "min_stock": 5,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": true,
+    "is_sale": false,
+    "popularity": 95,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_coat_camel.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_coat_camel.jpg"
+    ]
   },
   {
-    id: "prod-w-4",
-    sku: "BO-0312",
-    category_slug: "women",
-    subcategory: "Верхняя одежда",
-    brand: "Urban Casual",
-    name: "Куртка-бомбер демисезонная",
-    description: "Уютный женский бомбер в светло-бежевом оттенке из мягкого плотного трикотажа и ветрозащитного хлопка. Золотистая молния, комфортный крой и универсальная сочетаемость.",
-    purchase_price: 13000,
-    base_price: 28500,
-    old_price: null,
-    discount_percent: 0,
-    badge: "",
-    sizes: ["XS", "S", "M", "L"],
-    colors: [
-      { name: "Светло-бежевый", hex: "#e1d6c6" },
-      { name: "Серо-оливковый", hex: "#575e54" }
+    "id": "prod-m-7",
+    "sku": "PK-4580",
+    "category_slug": "men",
+    "subcategory": "Верхняя одежда",
+    "brand": "Nordic Shield",
+    "name": "Пуховик арктический Arctic Pro -35°C",
+    "description": "Экспедиционная зимняя куртка-парка с усиленной ветрозащитой и мембраной 10 000 мм.",
+    "purchase_price": 31000,
+    "base_price": 64500,
+    "old_price": null,
+    "discount_percent": 0,
+    "badge": "NEW",
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
     ],
-    season: "Демисезон",
-    image: IMG.women_bomber || "assets/images/women_bomber.jpg",
-    gallery: [IMG.women_bomber || "assets/images/women_bomber.jpg"],
-    stock_qty: 40,
-    min_stock: 6,
-    warehouse: "Основной склад",
-    is_available: true,
-    is_published: true,
-    is_new: false,
-    is_sale: false,
-    popularity: 91
-  },
-
-  // === ДЕТЯМ, СПОРТ, ОБУВЬ ===
-  {
-    id: "prod-k-1",
-    sku: "KD-5011",
-    category_slug: "kids",
-    subcategory: "Детская верхняя одежда",
-    brand: "Nordic Shield",
-    name: "Пуховик детский зимний Colorblock",
-    description: "Легкий и теплый детский зимний пуховик с капюшоном, светоотражающими деталями и водоотталкивающей пропиткой ткани.",
-    purchase_price: 14500,
-    base_price: 32000,
-    old_price: 40000,
-    discount_percent: 20,
-    badge: "NEW",
-    sizes: ["XS", "S", "M"],
-    colors: [
-      { name: "Темно-синий", hex: "#192d4b" },
-      { name: "Оливковый", hex: "#3f4f3c" }
+    "colors": [
+      {
+        "name": "Темно-зеленый",
+        "hex": "#233628"
+      },
+      {
+        "name": "Оливковый",
+        "hex": "#3f4f3c"
+      }
     ],
-    season: "Зима",
-    image: IMG.kids_jacket || "assets/images/kids_jacket.jpg",
-    gallery: [IMG.kids_jacket || "assets/images/kids_jacket.jpg"],
-    stock_qty: 28,
-    min_stock: 5,
-    warehouse: "Основной склад",
-    is_available: true,
-    is_published: true,
-    is_new: true,
-    is_sale: true,
-    popularity: 89
+    "season": "Зима",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_parka_navy.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_parka_navy.jpg"
+    ],
+    "stock_qty": 29,
+    "min_stock": 5,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": true,
+    "is_sale": false,
+    "popularity": 94,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_parka_navy.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_parka_navy.jpg"
+    ]
   },
   {
-    id: "prod-sp-1",
-    sku: "SP-7720",
-    category_slug: "sport",
-    subcategory: "Спортивные костюмы",
-    brand: "Casual Sport",
-    name: "Костюм спортивный Tech Motion графит",
-    description: "Комплект из худи на молнии и джоггеров анатомического кроя из дышащего эластичного хлопка с добавлением технических волокон.",
-    purchase_price: 14000,
-    base_price: 29500,
-    old_price: 36900,
-    discount_percent: 20,
-    badge: "SALE -20%",
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: [
-      { name: "Графитовый", hex: "#2d2f31" },
-      { name: "Черный", hex: "#0d0f12" }
+    "id": "prod-m-8",
+    "sku": "LE-2140",
+    "category_slug": "men",
+    "subcategory": "Верхняя одежда",
+    "brand": "Rock&Roll",
+    "name": "Куртка кожаная Biker Vintage Black",
+    "description": "Мото-куртка из плотной натуральной кожи с фактурной прострочкой на плечах.",
+    "purchase_price": 35000,
+    "base_price": 72000,
+    "old_price": null,
+    "discount_percent": 0,
+    "badge": "",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
     ],
-    season: "Всесезонный",
-    image: IMG.sport_suit || "assets/images/sport_suit.jpg",
-    gallery: [IMG.sport_suit || "assets/images/sport_suit.jpg"],
-    stock_qty: 52,
-    min_stock: 8,
-    warehouse: "Основной склад",
-    is_available: true,
-    is_published: true,
-    is_new: false,
-    is_sale: true,
-    popularity: 88
+    "colors": [
+      {
+        "name": "Черный",
+        "hex": "#0d0f12"
+      },
+      {
+        "name": "Бордовый",
+        "hex": "#5c1f1f"
+      }
+    ],
+    "season": "Демисезон",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_leather_brown.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_leather_brown.jpg"
+    ],
+    "stock_qty": 14,
+    "min_stock": 3,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": false,
+    "is_sale": false,
+    "popularity": 93,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_leather_brown.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_leather_brown.jpg"
+    ]
   },
   {
-    id: "prod-sh-1",
-    sku: "SH-9014",
-    category_slug: "shoes",
-    subcategory: "Ботинки и Челси",
-    brand: "Urban Trend",
-    name: "Ботинки Челси из натуральной кожи",
-    description: "Демисезонные кожаные ботинки Челси на протекторной подошве с эластичными боковыми вставками и кожаной стелькой.",
-    purchase_price: 21000,
-    base_price: 44900,
-    old_price: 54000,
-    discount_percent: 17,
-    badge: "SALE -17%",
-    sizes: ["S", "M", "L", "XL"],
-    colors: [
-      { name: "Шоколадный", hex: "#4f3d37" },
-      { name: "Черный", hex: "#0d0f12" }
+    "id": "prod-m-9",
+    "sku": "BO-0512",
+    "category_slug": "men",
+    "subcategory": "Верхняя одежда",
+    "brand": "Casual Sport",
+    "name": "Бомбер утепленный графитовый Tech",
+    "description": "Демисезонный утепленный бомбер из матового нейлона с водоотталкивающей пропиткой.",
+    "purchase_price": 14500,
+    "base_price": 29900,
+    "old_price": 38000,
+    "discount_percent": 21,
+    "badge": "SALE -21%",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
     ],
-    season: "Осень-Зима '26",
-    image: IMG.shoes_boots || "assets/images/shoes_boots.jpg",
-    gallery: [IMG.shoes_boots || "assets/images/shoes_boots.jpg"],
-    stock_qty: 24,
-    min_stock: 4,
-    warehouse: "Основной склад",
-    is_available: true,
-    is_published: true,
-    is_new: true,
-    is_sale: true,
-    popularity: 92
+    "colors": [
+      {
+        "name": "Графитовый",
+        "hex": "#2d2f31"
+      },
+      {
+        "name": "Черный",
+        "hex": "#0d0f12"
+      }
+    ],
+    "season": "Демисезон",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_bomber_dark.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_bomber_dark.jpg"
+    ],
+    "stock_qty": 33,
+    "min_stock": 5,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": false,
+    "is_sale": true,
+    "popularity": 92,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_bomber_dark.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_bomber_dark.jpg"
+    ]
+  },
+  {
+    "id": "prod-m-10",
+    "sku": "TR-3090",
+    "category_slug": "men",
+    "subcategory": "Верхняя одежда",
+    "brand": "Urban Trend",
+    "name": "Пальто-тренч демисезонное City",
+    "description": "Легкое городское пальто прямого силуэта со шлицей и скрытой застежкой.",
+    "purchase_price": 19500,
+    "base_price": 39500,
+    "old_price": 48000,
+    "discount_percent": 18,
+    "badge": "SALE -18%",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      {
+        "name": "Темно-синий",
+        "hex": "#192d4b"
+      },
+      {
+        "name": "Графитовый",
+        "hex": "#2d2f31"
+      }
+    ],
+    "season": "Демисезон",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_coat.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_coat.jpg"
+    ],
+    "stock_qty": 21,
+    "min_stock": 4,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": false,
+    "is_sale": true,
+    "popularity": 91,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_coat.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_coat.jpg"
+    ]
+  },
+  {
+    "id": "prod-m-11",
+    "sku": "PK-4610",
+    "category_slug": "men",
+    "subcategory": "Верхняя одежда",
+    "brand": "Nordic Shield",
+    "name": "Куртка-аляска зимняя с капюшоном",
+    "description": "Утепленная куртка-аляска с флисовым подкладом и защитой от штормового ветра.",
+    "purchase_price": 28000,
+    "base_price": 59000,
+    "old_price": null,
+    "discount_percent": 0,
+    "badge": "NEW",
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      {
+        "name": "Оливковый",
+        "hex": "#3f4f3c"
+      },
+      {
+        "name": "Черный",
+        "hex": "#0d0f12"
+      }
+    ],
+    "season": "Зима",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_parka.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_parka.jpg"
+    ],
+    "stock_qty": 26,
+    "min_stock": 5,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": true,
+    "is_sale": false,
+    "popularity": 90,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_parka.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_parka.jpg"
+    ]
+  },
+  {
+    "id": "prod-m-12",
+    "sku": "SP-3102",
+    "category_slug": "men",
+    "subcategory": "Верхняя одежда",
+    "brand": "Casual Sport",
+    "name": "Куртка-ветровка спортивная Pro Shield",
+    "description": "Технологичная куртка на молнии с эргономичным капюшоном для города и путешествий.",
+    "purchase_price": 16000,
+    "base_price": 34900,
+    "old_price": null,
+    "discount_percent": 0,
+    "badge": "",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      {
+        "name": "Графитовый",
+        "hex": "#2d2f31"
+      },
+      {
+        "name": "Индиго",
+        "hex": "#223056"
+      }
+    ],
+    "season": "Всесезонный",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/sport_suit.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/sport_suit.jpg"
+    ],
+    "stock_qty": 41,
+    "min_stock": 6,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": false,
+    "is_sale": false,
+    "popularity": 89,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/sport_suit.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/sport_suit.jpg"
+    ]
+  },
+  {
+    "id": "prod-w-1",
+    "sku": "WO-8472",
+    "category_slug": "women",
+    "subcategory": "Верхняя одежда",
+    "brand": "Grace & Style",
+    "name": "Пальто шерстяное классическое бежевое",
+    "description": "Изысканное женское шерстяное пальто классического кроя в благородном бежевом оттенке Camel.",
+    "purchase_price": 22000,
+    "base_price": 45500,
+    "old_price": 65000,
+    "discount_percent": 30,
+    "badge": "SALE -30%",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      {
+        "name": "Светло-бежевый",
+        "hex": "#e1d6c6"
+      },
+      {
+        "name": "Шоколадный",
+        "hex": "#4f3d37"
+      }
+    ],
+    "season": "Осень-Зима '26",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_coat.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_coat.jpg"
+    ],
+    "stock_qty": 27,
+    "min_stock": 5,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": false,
+    "is_sale": true,
+    "popularity": 100,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_coat.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_coat.jpg"
+    ]
+  },
+  {
+    "id": "prod-w-2",
+    "sku": "AV-1180",
+    "category_slug": "women",
+    "subcategory": "Верхняя одежда",
+    "brand": "Bella Vista",
+    "name": "Куртка-авиатор утепленная",
+    "description": "Стильная женская куртка-авиатор с мягкой меховой отделкой воротника и манжет.",
+    "purchase_price": 28000,
+    "base_price": 58900,
+    "old_price": null,
+    "discount_percent": 0,
+    "badge": "",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      {
+        "name": "Черный",
+        "hex": "#0d0f12"
+      },
+      {
+        "name": "Шоколадный",
+        "hex": "#4f3d37"
+      }
+    ],
+    "season": "Осень-Зима '26",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_aviator.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_aviator.jpg"
+    ],
+    "stock_qty": 22,
+    "min_stock": 4,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": true,
+    "is_sale": false,
+    "popularity": 99,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_aviator.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_aviator.jpg"
+    ]
+  },
+  {
+    "id": "prod-w-3",
+    "sku": "PK-6204",
+    "category_slug": "women",
+    "subcategory": "Верхняя одежда",
+    "brand": "Nordic Shield",
+    "name": "Парка зимняя с меховой отделкой",
+    "description": "Теплая женская зимняя парка оливкового цвета с пушистой меховой опушкой капюшона.",
+    "purchase_price": 29500,
+    "base_price": 62000,
+    "old_price": null,
+    "discount_percent": 0,
+    "badge": "NEW",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      {
+        "name": "Оливковый",
+        "hex": "#3f4f3c"
+      },
+      {
+        "name": "Темно-зеленый",
+        "hex": "#233628"
+      }
+    ],
+    "season": "Зима",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_parka.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_parka.jpg"
+    ],
+    "stock_qty": 31,
+    "min_stock": 5,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": true,
+    "is_sale": false,
+    "popularity": 98,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_parka.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_parka.jpg"
+    ]
+  },
+  {
+    "id": "prod-w-4",
+    "sku": "BO-0312",
+    "category_slug": "women",
+    "subcategory": "Верхняя одежда",
+    "brand": "Urban Casual",
+    "name": "Куртка-бомбер демисезонная",
+    "description": "Уютный женский бомбер в светло-бежевом оттенке из мягкого плотного трикотажа.",
+    "purchase_price": 13000,
+    "base_price": 28500,
+    "old_price": null,
+    "discount_percent": 0,
+    "badge": "",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      {
+        "name": "Светло-бежевый",
+        "hex": "#e1d6c6"
+      },
+      {
+        "name": "Серо-оливковый",
+        "hex": "#575e54"
+      }
+    ],
+    "season": "Демисезон",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_bomber.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_bomber.jpg"
+    ],
+    "stock_qty": 40,
+    "min_stock": 6,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": false,
+    "is_sale": false,
+    "popularity": 97,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_bomber.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_bomber.jpg"
+    ]
+  },
+  {
+    "id": "prod-w-5",
+    "sku": "WO-8510",
+    "category_slug": "women",
+    "subcategory": "Верхняя одежда",
+    "brand": "Grace & Style",
+    "name": "Пальто кашемировое с поясом Camel Luxe",
+    "description": "Пальто-халат из итальянской шерсти с кашемиром, съемным поясом и английским воротником.",
+    "purchase_price": 25000,
+    "base_price": 52000,
+    "old_price": 68000,
+    "discount_percent": 24,
+    "badge": "SALE -24%",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      {
+        "name": "Светло-бежевый",
+        "hex": "#e1d6c6"
+      },
+      {
+        "name": "Шоколадный",
+        "hex": "#4f3d37"
+      }
+    ],
+    "season": "Осень-Зима '26",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_coat_graphite.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_coat_graphite.jpg"
+    ],
+    "stock_qty": 19,
+    "min_stock": 4,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": false,
+    "is_sale": true,
+    "popularity": 96,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_coat_graphite.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_coat_graphite.jpg"
+    ]
+  },
+  {
+    "id": "prod-w-6",
+    "sku": "AV-1255",
+    "category_slug": "women",
+    "subcategory": "Верхняя одежда",
+    "brand": "Bella Vista",
+    "name": "Дубленка укороченная с мехом Velvet",
+    "description": "Модная женская дубленка-косуха с контрастным мехом и акцентными ремешками.",
+    "purchase_price": 31000,
+    "base_price": 64900,
+    "old_price": null,
+    "discount_percent": 0,
+    "badge": "NEW",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      {
+        "name": "Черный",
+        "hex": "#0d0f12"
+      },
+      {
+        "name": "Шоколадный",
+        "hex": "#4f3d37"
+      }
+    ],
+    "season": "Зима",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_aviator_brown.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_aviator_brown.jpg"
+    ],
+    "stock_qty": 17,
+    "min_stock": 4,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": true,
+    "is_sale": false,
+    "popularity": 95,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_aviator_brown.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_aviator_brown.jpg"
+    ]
+  },
+  {
+    "id": "prod-w-7",
+    "sku": "PK-6310",
+    "category_slug": "women",
+    "subcategory": "Верхняя одежда",
+    "brand": "Nordic Shield",
+    "name": "Пуховик зимний удлиненный с капюшоном",
+    "description": "Зимнее пальто-пуховик с био-пухом, высоким воротником и защитой от ветра и снега.",
+    "purchase_price": 28500,
+    "base_price": 59500,
+    "old_price": 74000,
+    "discount_percent": 20,
+    "badge": "SALE -20%",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      {
+        "name": "Темно-зеленый",
+        "hex": "#233628"
+      },
+      {
+        "name": "Черный",
+        "hex": "#0d0f12"
+      }
+    ],
+    "season": "Зима",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_parka_black.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_parka_black.jpg"
+    ],
+    "stock_qty": 25,
+    "min_stock": 5,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": false,
+    "is_sale": true,
+    "popularity": 94,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_parka_black.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_parka_black.jpg"
+    ]
+  },
+  {
+    "id": "prod-w-8",
+    "sku": "BO-0388",
+    "category_slug": "women",
+    "subcategory": "Верхняя одежда",
+    "brand": "Urban Casual",
+    "name": "Бомбер стеганый демисезонный Oversize",
+    "description": "Объемный женский бомбер в стиле smart-casual из мягкой водоотталкивающей ткани.",
+    "purchase_price": 15000,
+    "base_price": 31900,
+    "old_price": null,
+    "discount_percent": 0,
+    "badge": "NEW",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      {
+        "name": "Светло-бежевый",
+        "hex": "#e1d6c6"
+      },
+      {
+        "name": "Серо-оливковый",
+        "hex": "#575e54"
+      }
+    ],
+    "season": "Демисезон",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_bomber_olive.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_bomber_olive.jpg"
+    ],
+    "stock_qty": 34,
+    "min_stock": 5,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": true,
+    "is_sale": false,
+    "popularity": 93,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_bomber_olive.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_bomber_olive.jpg"
+    ]
+  },
+  {
+    "id": "prod-w-9",
+    "sku": "TR-7120",
+    "category_slug": "women",
+    "subcategory": "Верхняя одежда",
+    "brand": "Grace & Style",
+    "name": "Тренчкот классический двубортный Sand",
+    "description": "Двубортный женский тренч длины миди из плотного хлопкового габардина с поясом.",
+    "purchase_price": 19500,
+    "base_price": 41000,
+    "old_price": 52000,
+    "discount_percent": 21,
+    "badge": "SALE -21%",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      {
+        "name": "Светло-бежевый",
+        "hex": "#e1d6c6"
+      },
+      {
+        "name": "Графитовый",
+        "hex": "#2d2f31"
+      }
+    ],
+    "season": "Демисезон",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_coat.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_coat.jpg"
+    ],
+    "stock_qty": 23,
+    "min_stock": 4,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": false,
+    "is_sale": true,
+    "popularity": 92,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_coat.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_coat.jpg"
+    ]
+  },
+  {
+    "id": "prod-w-10",
+    "sku": "LE-3305",
+    "category_slug": "women",
+    "subcategory": "Верхняя одежда",
+    "brand": "Bella Vista",
+    "name": "Куртка кожаная женская косуха Black",
+    "description": "Приталенная куртка из натуральной овечьей кожи с серебристой фурнитурой.",
+    "purchase_price": 26500,
+    "base_price": 56000,
+    "old_price": null,
+    "discount_percent": 0,
+    "badge": "",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      {
+        "name": "Черный",
+        "hex": "#0d0f12"
+      },
+      {
+        "name": "Бордовый",
+        "hex": "#5c1f1f"
+      }
+    ],
+    "season": "Демисезон",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_aviator.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_aviator.jpg"
+    ],
+    "stock_qty": 18,
+    "min_stock": 4,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": false,
+    "is_sale": false,
+    "popularity": 91,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_aviator.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_aviator.jpg"
+    ]
+  },
+  {
+    "id": "prod-w-11",
+    "sku": "PK-6420",
+    "category_slug": "women",
+    "subcategory": "Верхняя одежда",
+    "brand": "Nordic Shield",
+    "name": "Парка зимняя Arctic Lady с мехом",
+    "description": "Зимняя женская парка с натуральным мехом енота на капюшоне и кулиской по талии.",
+    "purchase_price": 32000,
+    "base_price": 67500,
+    "old_price": null,
+    "discount_percent": 0,
+    "badge": "NEW",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      {
+        "name": "Оливковый",
+        "hex": "#3f4f3c"
+      },
+      {
+        "name": "Темно-синий",
+        "hex": "#192d4b"
+      }
+    ],
+    "season": "Зима",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_parka.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_parka.jpg"
+    ],
+    "stock_qty": 20,
+    "min_stock": 4,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": true,
+    "is_sale": false,
+    "popularity": 90,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_parka.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_parka.jpg"
+    ]
+  },
+  {
+    "id": "prod-w-12",
+    "sku": "WO-8640",
+    "category_slug": "women",
+    "subcategory": "Верхняя одежда",
+    "brand": "Urban Casual",
+    "name": "Куртка-рубашка шерстяная утепленная",
+    "description": "Стильная демисезонная куртка-рубашка свободного кроя в светло-молочном оттенке.",
+    "purchase_price": 16000,
+    "base_price": 33500,
+    "old_price": 42000,
+    "discount_percent": 20,
+    "badge": "SALE -20%",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      {
+        "name": "Светло-бежевый",
+        "hex": "#e1d6c6"
+      },
+      {
+        "name": "Шоколадный",
+        "hex": "#4f3d37"
+      }
+    ],
+    "season": "Демисезон",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_bomber.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_bomber.jpg"
+    ],
+    "stock_qty": 29,
+    "min_stock": 5,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": false,
+    "is_sale": true,
+    "popularity": 89,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_bomber.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_bomber.jpg"
+    ]
+  },
+  {
+    "id": "prod-k-1",
+    "sku": "KD-5011",
+    "category_slug": "kids",
+    "subcategory": "Детская верхняя одежда",
+    "brand": "Nordic Shield",
+    "name": "Пуховик детский зимний Colorblock",
+    "description": "Легкий и теплый детский зимний пуховик с капюшоном и водоотталкивающей пропиткой.",
+    "purchase_price": 14500,
+    "base_price": 32000,
+    "old_price": 40000,
+    "discount_percent": 20,
+    "badge": "NEW",
+    "sizes": [
+      "XS",
+      "S",
+      "M"
+    ],
+    "colors": [
+      {
+        "name": "Темно-синий",
+        "hex": "#192d4b"
+      },
+      {
+        "name": "Оливковый",
+        "hex": "#3f4f3c"
+      }
+    ],
+    "season": "Зима",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/kids_jacket.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/kids_jacket.jpg"
+    ],
+    "stock_qty": 28,
+    "min_stock": 5,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": true,
+    "is_sale": true,
+    "popularity": 95,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/kids_jacket.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/kids_jacket.jpg"
+    ]
+  },
+  {
+    "id": "prod-k-2",
+    "sku": "KD-5024",
+    "category_slug": "kids",
+    "subcategory": "Детская верхняя одежда",
+    "brand": "Nordic Shield",
+    "name": "Парка детская зимняя на флисе Junior",
+    "description": "Утепленная детская парка с меховой опушкой, светоотражателями и защитой от снега.",
+    "purchase_price": 16000,
+    "base_price": 34500,
+    "old_price": null,
+    "discount_percent": 0,
+    "badge": "NEW",
+    "sizes": [
+      "XS",
+      "S",
+      "M"
+    ],
+    "colors": [
+      {
+        "name": "Оливковый",
+        "hex": "#3f4f3c"
+      },
+      {
+        "name": "Темно-синий",
+        "hex": "#192d4b"
+      }
+    ],
+    "season": "Зима",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/kids_jacket.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/kids_jacket.jpg"
+    ],
+    "stock_qty": 22,
+    "min_stock": 4,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": true,
+    "is_sale": false,
+    "popularity": 92,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/kids_jacket.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/kids_jacket.jpg"
+    ]
+  },
+  {
+    "id": "prod-k-3",
+    "sku": "KD-5088",
+    "category_slug": "kids",
+    "subcategory": "Детская верхняя одежда",
+    "brand": "Casual Sport",
+    "name": "Куртка демисезонная детская Active",
+    "description": "Непромокаемая детская куртка для активных прогулок и школы.",
+    "purchase_price": 10500,
+    "base_price": 21900,
+    "old_price": 27400,
+    "discount_percent": 20,
+    "badge": "SALE -20%",
+    "sizes": [
+      "XS",
+      "S",
+      "M"
+    ],
+    "colors": [
+      {
+        "name": "Темно-синий",
+        "hex": "#192d4b"
+      },
+      {
+        "name": "Графитовый",
+        "hex": "#2d2f31"
+      }
+    ],
+    "season": "Демисезон",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/kids_jacket.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/kids_jacket.jpg"
+    ],
+    "stock_qty": 35,
+    "min_stock": 6,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": false,
+    "is_sale": true,
+    "popularity": 90,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/kids_jacket.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/kids_jacket.jpg"
+    ]
+  },
+  {
+    "id": "prod-k-4",
+    "sku": "KD-5102",
+    "category_slug": "kids",
+    "subcategory": "Детская верхняя одежда",
+    "brand": "Urban Casual",
+    "name": "Комплект зимний куртка и полукомбинезон",
+    "description": "Зимний мембранный костюм для детей с усиленными вставками и термоподкладкой.",
+    "purchase_price": 17500,
+    "base_price": 38000,
+    "old_price": null,
+    "discount_percent": 0,
+    "badge": "",
+    "sizes": [
+      "XS",
+      "S",
+      "M"
+    ],
+    "colors": [
+      {
+        "name": "Индиго",
+        "hex": "#223056"
+      },
+      {
+        "name": "Темно-зеленый",
+        "hex": "#233628"
+      }
+    ],
+    "season": "Зима",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/kids_jacket.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/kids_jacket.jpg"
+    ],
+    "stock_qty": 19,
+    "min_stock": 4,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": false,
+    "is_sale": false,
+    "popularity": 88,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/kids_jacket.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/kids_jacket.jpg"
+    ]
+  },
+  {
+    "id": "prod-sp-1",
+    "sku": "SP-7720",
+    "category_slug": "sport",
+    "subcategory": "Спортивные костюмы",
+    "brand": "Casual Sport",
+    "name": "Костюм спортивный Tech Motion графит",
+    "description": "Комплект из худи на молнии и джоггеров анатомического кроя из дышащего хлопка.",
+    "purchase_price": 14000,
+    "base_price": 29500,
+    "old_price": 36900,
+    "discount_percent": 20,
+    "badge": "SALE -20%",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      {
+        "name": "Графитовый",
+        "hex": "#2d2f31"
+      },
+      {
+        "name": "Черный",
+        "hex": "#0d0f12"
+      }
+    ],
+    "season": "Всесезонный",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/sport_suit.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/sport_suit.jpg"
+    ],
+    "stock_qty": 52,
+    "min_stock": 8,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": false,
+    "is_sale": true,
+    "popularity": 95,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/sport_suit.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/sport_suit.jpg"
+    ]
+  },
+  {
+    "id": "prod-sp-2",
+    "sku": "SP-7805",
+    "category_slug": "sport",
+    "subcategory": "Спортивные костюмы",
+    "brand": "Casual Sport",
+    "name": "Анорак ветрозащитный Running Pro",
+    "description": "Ультралегкий спортивный анорак с вентиляционными клапанами и защитой от дождя.",
+    "purchase_price": 12500,
+    "base_price": 26900,
+    "old_price": null,
+    "discount_percent": 0,
+    "badge": "NEW",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      {
+        "name": "Графитовый",
+        "hex": "#2d2f31"
+      },
+      {
+        "name": "Темно-синий",
+        "hex": "#192d4b"
+      }
+    ],
+    "season": "Демисезон",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_bomber_dark.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_bomber_dark.jpg"
+    ],
+    "stock_qty": 36,
+    "min_stock": 5,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": true,
+    "is_sale": false,
+    "popularity": 92,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_bomber_dark.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_bomber_dark.jpg"
+    ]
+  },
+  {
+    "id": "prod-sp-3",
+    "sku": "SP-7890",
+    "category_slug": "sport",
+    "subcategory": "Спортивные костюмы",
+    "brand": "Urban Casual",
+    "name": "Костюм трикотажный на флисе Comfort",
+    "description": "Теплый спортивный костюм с мягким начесом для прогулок и активного отдыха.",
+    "purchase_price": 13500,
+    "base_price": 28900,
+    "old_price": 34000,
+    "discount_percent": 15,
+    "badge": "SALE -15%",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      {
+        "name": "Светло-бежевый",
+        "hex": "#e1d6c6"
+      },
+      {
+        "name": "Серо-оливковый",
+        "hex": "#575e54"
+      }
+    ],
+    "season": "Осень-Зима '26",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_bomber_olive.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_bomber_olive.jpg"
+    ],
+    "stock_qty": 44,
+    "min_stock": 6,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": false,
+    "is_sale": true,
+    "popularity": 90,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_bomber_olive.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/women_bomber_olive.jpg"
+    ]
+  },
+  {
+    "id": "prod-sp-4",
+    "sku": "SP-7940",
+    "category_slug": "sport",
+    "subcategory": "Спортивные костюмы",
+    "brand": "Nordic Shield",
+    "name": "Куртка горнолыжная мембранная Alpine",
+    "description": "Зимняя спортивная куртка со снежной юбкой, карманом для ски-пасса и терморегуляцией.",
+    "purchase_price": 24000,
+    "base_price": 52000,
+    "old_price": null,
+    "discount_percent": 0,
+    "badge": "NEW",
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      {
+        "name": "Темно-зеленый",
+        "hex": "#233628"
+      },
+      {
+        "name": "Индиго",
+        "hex": "#223056"
+      }
+    ],
+    "season": "Зима",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_parka_navy.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_parka_navy.jpg"
+    ],
+    "stock_qty": 21,
+    "min_stock": 4,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": true,
+    "is_sale": false,
+    "popularity": 89,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_parka_navy.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/men_parka_navy.jpg"
+    ]
+  },
+  {
+    "id": "prod-sh-1",
+    "sku": "SH-9014",
+    "category_slug": "shoes",
+    "subcategory": "Ботинки и Челси",
+    "brand": "Urban Trend",
+    "name": "Ботинки Челси из натуральной кожи",
+    "description": "Демисезонные кожаные ботинки Челси на протекторной подошве.",
+    "purchase_price": 21000,
+    "base_price": 44900,
+    "old_price": 54000,
+    "discount_percent": 17,
+    "badge": "SALE -17%",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      {
+        "name": "Шоколадный",
+        "hex": "#4f3d37"
+      },
+      {
+        "name": "Черный",
+        "hex": "#0d0f12"
+      }
+    ],
+    "season": "Осень-Зима '26",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/shoes_boots.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/shoes_boots.jpg"
+    ],
+    "stock_qty": 24,
+    "min_stock": 4,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": true,
+    "is_sale": true,
+    "popularity": 95,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/shoes_boots.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/shoes_boots.jpg"
+    ]
+  },
+  {
+    "id": "prod-sh-2",
+    "sku": "SH-9055",
+    "category_slug": "shoes",
+    "subcategory": "Ботинки и Челси",
+    "brand": "Rock&Roll",
+    "name": "Ботинки зимние кожаные на натуральном меху",
+    "description": "Высокие зимние ботинки на шнуровке из толстой кожи с нескользящей подошвой.",
+    "purchase_price": 24500,
+    "base_price": 51000,
+    "old_price": null,
+    "discount_percent": 0,
+    "badge": "NEW",
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      {
+        "name": "Черный",
+        "hex": "#0d0f12"
+      },
+      {
+        "name": "Шоколадный",
+        "hex": "#4f3d37"
+      }
+    ],
+    "season": "Зима",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/shoes_boots.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/shoes_boots.jpg"
+    ],
+    "stock_qty": 18,
+    "min_stock": 4,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": true,
+    "is_sale": false,
+    "popularity": 93,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/shoes_boots.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/shoes_boots.jpg"
+    ]
+  },
+  {
+    "id": "prod-sh-3",
+    "sku": "SH-9120",
+    "category_slug": "shoes",
+    "subcategory": "Ботинки и Челси",
+    "brand": "Grace & Style",
+    "name": "Ботильоны женские кожаные Classic",
+    "description": "Элегантные женские кожаные ботильоны с мягкой байковой подкладкой.",
+    "purchase_price": 22000,
+    "base_price": 47500,
+    "old_price": 58000,
+    "discount_percent": 18,
+    "badge": "SALE -18%",
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "colors": [
+      {
+        "name": "Шоколадный",
+        "hex": "#4f3d37"
+      },
+      {
+        "name": "Черный",
+        "hex": "#0d0f12"
+      }
+    ],
+    "season": "Осень-Зима '26",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/shoes_boots.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/shoes_boots.jpg"
+    ],
+    "stock_qty": 20,
+    "min_stock": 4,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": false,
+    "is_sale": true,
+    "popularity": 91,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/shoes_boots.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/shoes_boots.jpg"
+    ]
+  },
+  {
+    "id": "prod-sh-4",
+    "sku": "SH-9210",
+    "category_slug": "shoes",
+    "subcategory": "Ботинки и Челси",
+    "brand": "Casual Sport",
+    "name": "Ботинки треккинговые утепленные Nordic",
+    "description": "Водонепроницаемые городские хайкеры с анатомической стелькой и защитой мыса.",
+    "purchase_price": 18500,
+    "base_price": 38900,
+    "old_price": null,
+    "discount_percent": 0,
+    "badge": "",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      {
+        "name": "Шоколадный",
+        "hex": "#4f3d37"
+      },
+      {
+        "name": "Оливковый",
+        "hex": "#3f4f3c"
+      }
+    ],
+    "season": "Зима",
+    "image_url": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/shoes_boots.jpg",
+    "gallery_urls": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/shoes_boots.jpg"
+    ],
+    "stock_qty": 27,
+    "min_stock": 5,
+    "warehouse": "Основной склад",
+    "is_available": true,
+    "is_published": true,
+    "is_new": false,
+    "is_sale": false,
+    "popularity": 89,
+    "image": "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/shoes_boots.jpg",
+    "gallery": [
+      "https://zpmapedzbbrfxlmuncbd.supabase.co/storage/v1/object/public/product-images/catalog/shoes_boots.jpg"
+    ]
   }
 ];
 
@@ -725,8 +2078,8 @@ window.fmtKZT = function (n) {
 };
 
 // Единое локальное хранилище между index.html и staff.html + настройки Supabase
-const SHARED_DB_KEY = "style_obraz_shared_db_v3";
-const SB_CFG_KEY    = "style_obraz_supabase_cfg_v3";
+const SHARED_DB_KEY = "style_obraz_shared_db_v4";
+const SB_CFG_KEY    = "style_obraz_supabase_cfg_v4";
 
 window.loadStyleConfig = function () {
   const overrideUrl = window.cleanSupabaseUrl(window.SUPABASE_KEYS_OVERRIDE?.url || window.STYLE_DEFAULT_SB_URL || "");

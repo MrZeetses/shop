@@ -169,6 +169,7 @@
       search: "",
       sortBy: "popular",        // 'popular' | 'price_asc' | 'price_desc' | 'discount' | 'newest'
       showAllPages: false,
+      showMoreCount: 4,
       activePage: 1,
 
       // Фильтры левой панели (точно как на image.png и image_2.png)
@@ -189,7 +190,7 @@
       sizeGuideOpen: false,
       infoModal: null,          // 'delivery' | 'stores' | 'support'
       authModalOpen: false,
-      authMode: "login",
+      authMode: "login",        // 'login' | 'register'
       checkoutModalOpen: false,
       oneClickModalOpen: false,
       sbModalOpen: false,
@@ -260,7 +261,7 @@
 
     // Мгновенная синхронизация между вкладками index.html и staff.html
     window.addEventListener("storage", (e) => {
-      if (e.key === "style_obraz_shared_db_v3") {
+      if (e.key === "style_obraz_shared_db_v4") {
         const fresh = window.loadSharedDb();
         state.products = fresh.products;
         state.orders = fresh.orders;
@@ -276,7 +277,7 @@
       }
       try {
         const [prodRes, ordRes] = await Promise.all([
-          sb.from("products").select("*").order("created_at", { ascending: false }),
+          sb.from("products").select("*").order("popularity", { ascending: false }),
           sb.from("orders").select("*").order("created_at", { ascending: false }).limit(100)
         ]);
 
@@ -605,9 +606,29 @@
     function renderCatalogView() {
       const catMeta = CATEGORIES.find((c) => c.slug === state.activeCat) || CATEGORIES[2];
       const filtered = getFilteredProducts();
-      const visibleProducts = state.showAllPages ? filtered : filtered.slice(0, 4);
-      const totalCatalogCount = filtered.length > 4 ? catMeta.count : catMeta.count;
-      const totalPages = state.activeCat === "women" ? 54 : 36;
+      const pageSize = 4;
+      const realTotalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+      const curPage = Math.min(realTotalPages, Math.max(1, state.activePage));
+
+      let visibleProducts = [];
+      let startIdxDisplay = 1;
+      let endIdxDisplay = filtered.length;
+
+      if (state.showAllPages) {
+        const limit = Math.min(filtered.length, Math.max(8, state.showMoreCount));
+        visibleProducts = filtered.slice(0, limit);
+        startIdxDisplay = filtered.length ? 1 : 0;
+        endIdxDisplay = visibleProducts.length;
+      } else {
+        const startOffset = (curPage - 1) * pageSize;
+        visibleProducts = filtered.slice(startOffset, startOffset + pageSize);
+        startIdxDisplay = filtered.length ? startOffset + 1 : 0;
+        endIdxDisplay = startOffset + visibleProducts.length;
+      }
+
+      const totalCatalogCount = catMeta.count;
+      const displayTotalPages = state.activeCat === "women" ? 54 : 36;
+      const pageList = Array.from({ length: realTotalPages }, (_, i) => i + 1);
 
       return `
         <main class="max-w-[1280px] mx-auto px-4 sm:px-6 pb-16">
@@ -802,31 +823,59 @@
                 </div>
               `}
 
-              <!-- Нижняя пагинация (Показано 1–4 из 1420 | 1 2 3 ... 36 | Показать еще) -->
+              <!-- Нижняя пагинация и перелистывание списка (← Назад | 1 2 3 ... | Вперед → | Показать еще +4) -->
               <div class="mt-5 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm text-slate-700">
                 <div>
-                  Показано 1–${visibleProducts.length} из ${totalCatalogCount}
+                  Показано <span class="font-semibold text-slate-950">${startIdxDisplay}–${endIdxDisplay}</span> из <span class="font-semibold text-slate-950">${filtered.length}</span> моделей <span class="text-slate-400">(в разделе ${totalCatalogCount})</span>
                 </div>
 
-                <div class="flex items-center gap-4">
-                  <div class="flex items-center gap-2.5">
-                    ${[1, 2, 3].map((pg) => `
+                <div class="flex flex-wrap items-center gap-3">
+                  <!-- Кнопка Назад -->
+                  <button
+                    id="page-prev-btn"
+                    type="button"
+                    ${(!state.showAllPages && curPage <= 1) ? "disabled" : ""}
+                    class="px-2.5 py-1 rounded border border-slate-300 hover:border-slate-900 disabled:opacity-40 disabled:pointer-events-none text-xs font-medium transition"
+                  >
+                    ← Назад
+                  </button>
+
+                  <!-- Номера страниц -->
+                  <div class="flex items-center gap-2">
+                    ${pageList.map((pg) => `
                       <button
                         type="button"
-                        class="page-num-btn px-1 py-0.5 ${state.activePage === pg ? "font-bold text-slate-950 border-b-2 border-slate-900" : "text-slate-600 hover:text-slate-950"}"
+                        class="page-num-btn px-2 py-0.5 rounded transition ${
+                          (!state.showAllPages && curPage === pg)
+                            ? "font-bold text-slate-950 border-b-2 border-slate-900 bg-slate-100"
+                            : "text-slate-600 hover:text-slate-950 hover:bg-slate-50"
+                        }"
                         data-page="${pg}"
                       >${pg}</button>
                     `).join("")}
                     <span class="text-slate-400">...</span>
-                    <button type="button" class="page-num-btn px-1 py-0.5 text-slate-600 hover:text-slate-950" data-page="${totalPages}">${totalPages}</button>
+                    <button type="button" class="page-num-btn px-1.5 py-0.5 text-slate-600 hover:text-slate-950" data-page="${realTotalPages}">${displayTotalPages}</button>
                   </div>
 
+                  <!-- Кнопка Вперед -->
+                  <button
+                    id="page-next-btn"
+                    type="button"
+                    ${(!state.showAllPages && curPage >= realTotalPages) ? "disabled" : ""}
+                    class="px-2.5 py-1 rounded border border-slate-300 hover:border-slate-900 disabled:opacity-40 disabled:pointer-events-none text-xs font-medium transition"
+                  >
+                    Вперед →
+                  </button>
+
+                  <!-- Кнопка Показать еще (+4 товара) / Свернуть список -->
                   <button
                     id="show-more-products-btn"
                     type="button"
-                    class="px-4 py-1.5 rounded border border-slate-700 text-slate-900 hover:bg-slate-900 hover:text-white text-xs sm:text-sm font-medium transition"
+                    class="px-4 py-1.5 rounded border border-slate-800 text-slate-900 hover:bg-slate-900 hover:text-white text-xs sm:text-sm font-medium transition"
                   >
-                    ${state.showAllPages ? "Свернуть список" : "Показать еще"}
+                    ${(state.showAllPages && visibleProducts.length >= filtered.length)
+                      ? "Свернуть список"
+                      : `Показать еще (+4)`}
                   </button>
                 </div>
               </div>
@@ -1367,58 +1416,66 @@
     function renderAuthModal() {
       if (!state.authModalOpen) return "";
       return `
-        <div class="fixed inset-0 z-50 bg-black/55 backdrop-blur-xs flex items-center justify-center p-4">
-          <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200">
-            <div class="flex items-center justify-between pb-3 border-b border-slate-200">
-              <h2 class="text-lg font-bold text-slate-950">${state.user ? "Личный кабинет покупателя" : "Вход в «Стиль & Образ»"}</h2>
-              <button id="close-auth-modal-btn" type="button" class="w-8 h-8 rounded-full hover:bg-slate-100 text-slate-500 font-bold">✕</button>
-            </div>
+        <div class="fixed inset-0 z-50 bg-black/55 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+          <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 relative my-8">
+            <button id="close-auth-modal-btn" type="button" class="absolute top-5 right-5 w-9 h-9 rounded-full hover:bg-slate-100 text-slate-500 font-bold">✕</button>
+            <span class="px-2.5 py-1 rounded-full bg-blue-100 text-[#1d68b8] text-[11px] font-bold">Личный кабинет покупателя • Supabase</span>
+            <h2 class="text-2xl font-extrabold text-slate-950 mt-2">
+              ${state.user ? "Профиль покупателя" : state.authMode === "register" ? "Регистрация клиента" : "Вход для клиента"}
+            </h2>
+            <p class="text-xs text-slate-500 mt-1">У каждого покупателя своя личная история заказов и бонусов в базе Supabase</p>
 
             ${state.user ? `
-              <div class="mt-4 space-y-3">
-                <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
-                  <div class="font-bold text-sm text-slate-900">${escapeHtml(state.user.name)}</div>
-                  <div class="text-xs text-slate-500">${escapeHtml(state.user.email)} • ${escapeHtml(state.user.phone)}</div>
-                  <div class="mt-2 inline-block px-2.5 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[11px] font-semibold">Бонусный баланс: 2 500 ₸</div>
+              <div class="mt-4 space-y-3.5">
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                  <div class="font-bold text-sm text-slate-950">${escapeHtml(state.user.name)}</div>
+                  <div class="text-xs text-slate-500 mt-0.5">${escapeHtml(state.user.email)} • ${escapeHtml(state.user.phone)}</div>
+                  <div class="mt-2 inline-block px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold">Бонусный баланс: 2 500 ₸</div>
                 </div>
 
-                <div class="text-xs font-semibold text-slate-800">История ваших заказов (${state.orders.length}):</div>
+                <div class="text-xs font-bold text-slate-800">История ваших заказов в Supabase (${state.orders.length}):</div>
                 <div class="max-h-56 overflow-y-auto space-y-2">
-                  ${state.orders.slice(0, 5).map((o) => `
-                    <div class="p-3 rounded-lg border border-slate-200 text-xs flex items-center justify-between">
+                  ${state.orders.slice(0, 6).map((o) => `
+                    <div class="p-3 rounded-xl border border-slate-200 text-xs flex items-center justify-between">
                       <div>
                         <div class="font-bold text-slate-900">Заказ #${o.number}</div>
                         <div class="text-slate-500">${(o.items || []).length} поз. • ${fmt(o.total)}</div>
                       </div>
-                      <span class="px-2 py-0.5 rounded text-[11px] font-semibold ${STATUS_META[o.status]?.badge || "bg-slate-100"}">
+                      <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold ${STATUS_META[o.status]?.badge || "bg-slate-100"}">
                         ${STATUS_META[o.status]?.label || o.status}
                       </span>
                     </div>
                   `).join("")}
                 </div>
 
-                <button id="logout-user-btn" type="button" class="w-full py-2.5 rounded-lg border border-rose-300 text-rose-700 text-xs font-semibold hover:bg-rose-50">
+                <button id="logout-user-btn" type="button" class="w-full py-2.5 rounded-xl border border-rose-300 text-rose-700 text-xs font-bold hover:bg-rose-50">
                   Выйти из аккаунта
                 </button>
               </div>
             ` : `
+              <div class="grid grid-cols-2 bg-slate-100 p-1 rounded-2xl mt-4 text-xs font-bold">
+                <button type="button" data-amode="login" class="amode-btn py-2 rounded-xl transition ${state.authMode === "login" ? "bg-white shadow text-slate-950" : "text-slate-600"}">Вход</button>
+                <button type="button" data-amode="register" class="amode-btn py-2 rounded-xl transition ${state.authMode === "register" ? "bg-white shadow text-slate-950" : "text-slate-600"}">Регистрация клиента</button>
+              </div>
+
               <form id="login-customer-form" class="mt-4 space-y-3">
-                <div>
-                  <label class="block text-xs font-semibold text-slate-700 mb-1">Имя и Фамилия</label>
-                  <input id="auth-name" type="text" value="Айгерим Сапарова" required class="w-full h-10 px-3 rounded-lg border border-slate-300 text-xs" />
-                </div>
-                <div>
-                  <label class="block text-xs font-semibold text-slate-700 mb-1">Email</label>
-                  <input id="auth-email" type="email" value="aigerim@mail.kz" required class="w-full h-10 px-3 rounded-lg border border-slate-300 text-xs" />
-                </div>
-                <div>
-                  <label class="block text-xs font-semibold text-slate-700 mb-1">Телефон</label>
-                  <input id="auth-phone" type="text" value="+7 (701) 555-44-11" required class="w-full h-10 px-3 rounded-lg border border-slate-300 text-xs" />
-                </div>
-                <button type="submit" class="w-full h-10 rounded-lg bg-slate-950 hover:bg-slate-800 text-white text-xs font-bold uppercase">
-                  Войти / Зарегистрироваться
+                ${state.authMode === "register" ? `
+                  <input id="auth-name" type="text" placeholder="Ваше имя и фамилия" value="Айгерим Сапарова" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-slate-900" />
+                  <input id="auth-phone" type="tel" placeholder="Телефон (+7 707 000-00-00)" value="+7 (701) 555-44-11" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-slate-900" />
+                ` : ""}
+                <input id="auth-email" type="email" placeholder="Email клиента" value="aigerim@mail.kz" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-slate-900" />
+                <input id="auth-pass" type="password" placeholder="Пароль" value="123456" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-slate-900" />
+                <button type="submit" class="w-full py-3 rounded-xl bg-[#1d68b8] hover:bg-blue-700 text-white font-bold text-sm shadow transition">
+                  ${state.authMode === "register" ? "Зарегистрироваться как клиент" : "Войти"}
                 </button>
               </form>
+
+              <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+                <span class="text-slate-500">Быстрый тест:</span>
+                <button type="button" id="quick-client-login-btn" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-blue-50 text-slate-900 font-bold transition">
+                  Войти демо-клиентом в 1 клик
+                </button>
+              </div>
             `}
           </div>
         </div>
@@ -1460,7 +1517,7 @@
             </div>
             <div class="flex items-center gap-5">
               <button type="button" id="footer-open-sb-btn" class="hover:text-slate-950 underline">🔑 Настройки Supabase &amp; Storage</button>
-              <a href="staff.html" class="font-semibold text-slate-900 hover:text-blue-700">🏢 Открыть портал персонала (staff.html) →</a>
+              <a href="https://mrzeetses.github.io/shop-staff/" target="_blank" class="font-semibold text-slate-900 hover:text-blue-700">🏢 Открыть портал персонала (shop-staff) →</a>
             </div>
           </div>
         </footer>
@@ -1558,20 +1615,70 @@
       const closeAuthBtn = document.getElementById("close-auth-modal-btn");
       if (closeAuthBtn) closeAuthBtn.onclick = () => { state.authModalOpen = false; render(); };
 
+      document.querySelectorAll(".amode-btn").forEach((btn) => {
+        btn.onclick = () => {
+          state.authMode = btn.dataset.amode;
+          render();
+        };
+      });
+
+      const quickClientBtn = document.getElementById("quick-client-login-btn");
+      if (quickClientBtn) {
+        quickClientBtn.onclick = async () => {
+          const demoUser = {
+            name: "Айгерим Сапарова",
+            email: "aigerim@mail.kz",
+            phone: "+7 (701) 555-44-11"
+          };
+          state.user = demoUser;
+          state.customerName = demoUser.name;
+          state.customerEmail = demoUser.email;
+          state.customerPhone = demoUser.phone;
+          state.authModalOpen = false;
+          persistLocal();
+          const sb = getSbClient();
+          if (sb) {
+            try {
+              await sb.from("profiles").insert({
+                email: demoUser.email,
+                full_name: demoUser.name,
+                phone: demoUser.phone,
+                role: "customer",
+                bonus_balance: 2500
+              });
+            } catch (_) {}
+          }
+          notify("Вы вошли демо-клиентом: Айгерим Сапарова!");
+        };
+      }
+
       const loginForm = document.getElementById("login-customer-form");
       if (loginForm) {
-        loginForm.onsubmit = (e) => {
+        loginForm.onsubmit = async (e) => {
           e.preventDefault();
-          const name = document.getElementById("auth-name").value.trim() || "Покупатель";
-          const email = document.getElementById("auth-email").value.trim();
-          const phone = document.getElementById("auth-phone").value.trim();
+          const email = document.getElementById("auth-email")?.value.trim() || "client@style-obraz.kz";
+          const name = document.getElementById("auth-name")?.value.trim() || email.split("@")[0];
+          const phone = document.getElementById("auth-phone")?.value.trim() || "+7 (701) 555-44-11";
           state.user = { name, email, phone };
           state.customerName = name;
           state.customerEmail = email;
           state.customerPhone = phone;
           state.authModalOpen = false;
           persistLocal();
-          notify(`Добро пожаловать, ${name}!`);
+
+          const sb = getSbClient();
+          if (sb) {
+            try {
+              await sb.from("profiles").insert({
+                email,
+                full_name: name,
+                phone,
+                role: "customer",
+                bonus_balance: 2500
+              });
+            } catch (_) {}
+          }
+          notify(`Добро пожаловать, ${name}! Профиль синхронизирован с Supabase.`);
         };
       }
 
@@ -1591,6 +1698,8 @@
           state.view = "catalog";
           state.activeCat = btn.dataset.cat;
           state.activePage = 1;
+          state.showAllPages = false;
+          state.showMoreCount = 4;
           render();
         };
       });
@@ -1600,6 +1709,7 @@
       if (searchInp) {
         searchInp.oninput = (e) => {
           state.search = e.target.value;
+          state.activePage = 1;
           if (state.view !== "catalog") state.view = "catalog";
           render();
           const el = document.getElementById("catalog-search-input");
@@ -1623,6 +1733,9 @@
       if (heroSwitchBtn) {
         heroSwitchBtn.onclick = () => {
           state.activeCat = state.activeCat === "men" ? "women" : "men";
+          state.activePage = 1;
+          state.showAllPages = false;
+          state.showMoreCount = 4;
           render();
         };
       }
@@ -1639,6 +1752,7 @@
           } else {
             state.selectedSizes.push(sz);
           }
+          state.activePage = 1;
           render();
         };
       });
@@ -1648,17 +1762,19 @@
         btn.onclick = () => {
           const hex = btn.dataset.color;
           state.selectedColorHex = state.selectedColorHex === hex ? "" : hex;
+          state.activePage = 1;
           render();
         };
       });
       const clearColorBtn = document.getElementById("clear-color-btn");
-      if (clearColorBtn) clearColorBtn.onclick = () => { state.selectedColorHex = ""; render(); };
+      if (clearColorBtn) clearColorBtn.onclick = () => { state.selectedColorHex = ""; state.activePage = 1; render(); };
 
       // Ползунок цены
       const priceSlider = document.getElementById("price-range-slider");
       if (priceSlider) {
         priceSlider.oninput = (e) => {
           state.maxPrice = Number(e.target.value) || 150000;
+          state.activePage = 1;
           render();
         };
       }
@@ -1672,6 +1788,7 @@
           const val = inp.value;
           if (inp.checked) state.selectedBrands.push(val);
           else state.selectedBrands = state.selectedBrands.filter((x) => x !== val);
+          state.activePage = 1;
           render();
         };
       });
@@ -1684,6 +1801,7 @@
           const val = inp.value;
           if (inp.checked) state.selectedSeasons.push(val);
           else state.selectedSeasons = state.selectedSeasons.filter((x) => x !== val);
+          state.activePage = 1;
           render();
         };
       });
@@ -1699,6 +1817,8 @@
             state.selectedBrands = [];
             state.selectedSeasons = [];
             state.search = "";
+            state.activePage = 1;
+            state.showAllPages = false;
             render();
           };
         }
@@ -1709,14 +1829,37 @@
       if (sortSel) {
         sortSel.onchange = (e) => {
           state.sortBy = e.target.value;
+          state.activePage = 1;
           render();
         };
       }
 
-      // Пагинация и Показать еще
+      // Пагинация: ← Назад / 1 2 3 / Вперед → / Показать еще (+4)
+      const prevBtn = document.getElementById("page-prev-btn");
+      if (prevBtn) {
+        prevBtn.onclick = () => {
+          state.showAllPages = false;
+          state.activePage = Math.max(1, state.activePage - 1);
+          render();
+        };
+      }
+
+      const nextBtn = document.getElementById("page-next-btn");
+      if (nextBtn) {
+        nextBtn.onclick = () => {
+          const totalP = Math.max(1, Math.ceil(getFilteredProducts().length / 4));
+          state.showAllPages = false;
+          state.activePage = Math.min(totalP, state.activePage + 1);
+          render();
+        };
+      }
+
       document.querySelectorAll(".page-num-btn").forEach((btn) => {
         btn.onclick = () => {
-          state.activePage = Number(btn.dataset.page) || 1;
+          const totalP = Math.max(1, Math.ceil(getFilteredProducts().length / 4));
+          const target = Math.min(totalP, Math.max(1, Number(btn.dataset.page) || 1));
+          state.showAllPages = false;
+          state.activePage = target;
           render();
         };
       });
@@ -1724,7 +1867,17 @@
       const showMoreBtn = document.getElementById("show-more-products-btn");
       if (showMoreBtn) {
         showMoreBtn.onclick = () => {
-          state.showAllPages = !state.showAllPages;
+          const totalLen = getFilteredProducts().length;
+          if (!state.showAllPages) {
+            state.showAllPages = true;
+            state.showMoreCount = Math.min(totalLen, 8);
+          } else if (state.showMoreCount < totalLen) {
+            state.showMoreCount = Math.min(totalLen, state.showMoreCount + 4);
+          } else {
+            state.showAllPages = false;
+            state.showMoreCount = 4;
+            state.activePage = 1;
+          }
           render();
         };
       }
