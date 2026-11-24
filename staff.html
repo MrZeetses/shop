@@ -108,8 +108,8 @@
     // Вы можете вставить свои ключи прямо сюда ИЛИ в файл shared-data.js:
     // ============================================================================
     window.SUPABASE_KEYS_OVERRIDE = {
-      url:    "", // <-- ВСТАВЬТЕ СЮДА SUPABASE PROJECT URL (например: "https://xxxxxx.supabase.co")
-      key:    "", // <-- ВСТАВЬТЕ СЮДА SUPABASE ANON / PUBLISHABLE KEY
+      url:    "https://zpmapedzbbrfxlmuncbd.supabase.co",
+      key:    "sb_publishable_Q8bp5yDcT3g-b0K7tnvbfw_RYFYDkMi",
       bucket: "product-images", // Бакет в Supabase Storage для сохранения фото одежды
       aiFn:   "style-ai"
     };
@@ -202,10 +202,11 @@
     let aiHistory = [];
 
     function getSbClient() {
-      if (!state.sbUrl || !state.sbKey || !window.supabase) return null;
+      const cleanUrl = window.cleanSupabaseUrl(state.sbUrl);
+      if (!cleanUrl || !state.sbKey || !window.supabase) return null;
       if (sbClient) return sbClient;
       try {
-        sbClient = window.supabase.createClient(state.sbUrl, state.sbKey);
+        sbClient = window.supabase.createClient(cleanUrl, state.sbKey);
         return sbClient;
       } catch (_) {
         return null;
@@ -222,7 +223,7 @@
     }
 
     window.addEventListener("storage", (e) => {
-      if (e.key === "style_obraz_shared_db_v2") {
+      if (e.key === "style_obraz_shared_db_v3") {
         const fresh = window.loadSharedDb();
         state.products = fresh.products;
         state.staff = fresh.staff;

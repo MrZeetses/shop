@@ -10,10 +10,17 @@
 // 3. Скопируйте Project URL и anon / publishable key из Project Settings -> API
 //    и вставьте их в две строки ниже (или через кнопку «🔑 Ключи Supabase» на сайте):
 // ============================================================================
-window.STYLE_DEFAULT_SB_URL    = ""; // <-- ВСТАВЬТЕ СЮДА SUPABASE PROJECT URL (например: "https://xyzcompany.supabase.co")
-window.STYLE_DEFAULT_SB_KEY    = ""; // <-- ВСТАВЬТЕ СЮДА SUPABASE ANON / PUBLISHABLE KEY (например: "eyJhbGci..." или "sb_publishable_...")
+window.STYLE_DEFAULT_SB_URL    = "https://zpmapedzbbrfxlmuncbd.supabase.co";
+window.STYLE_DEFAULT_SB_KEY    = "sb_publishable_Q8bp5yDcT3g-b0K7tnvbfw_RYFYDkMi";
 window.STYLE_DEFAULT_SB_BUCKET = "product-images"; // Бакет Supabase Storage для сохранения фото товаров
 window.STYLE_DEFAULT_AI_FN     = "style-ai";       // Имя Supabase Edge Function для ИИ-ассистента
+
+window.cleanSupabaseUrl = function (rawUrl) {
+  return String(rawUrl || "")
+    .trim()
+    .replace(/\/rest\/v1\/?$/i, "")
+    .replace(/\/+$/, "");
+};
 
 const IMG = window.STYLE_IMAGES || {};
 
@@ -718,13 +725,11 @@ window.fmtKZT = function (n) {
 };
 
 // Единое локальное хранилище между index.html и staff.html + настройки Supabase
-const SHARED_DB_KEY = "style_obraz_shared_db_v2";
-const SB_CFG_KEY    = "style_obraz_supabase_cfg_v2";
+const SHARED_DB_KEY = "style_obraz_shared_db_v3";
+const SB_CFG_KEY    = "style_obraz_supabase_cfg_v3";
 
 window.loadStyleConfig = function () {
-  // Приоритет: 1) Явно вставленные ключи в window.SUPABASE_KEYS_OVERRIDE или window.STYLE_DEFAULT_SB_URL
-  //            2) Сохранённые в браузере через модальное окно «🔑 Ключи Supabase»
-  const overrideUrl = (window.SUPABASE_KEYS_OVERRIDE?.url || window.STYLE_DEFAULT_SB_URL || "").trim();
+  const overrideUrl = window.cleanSupabaseUrl(window.SUPABASE_KEYS_OVERRIDE?.url || window.STYLE_DEFAULT_SB_URL || "");
   const overrideKey = (window.SUPABASE_KEYS_OVERRIDE?.key || window.STYLE_DEFAULT_SB_KEY || "").trim();
   const overrideBucket = (window.SUPABASE_KEYS_OVERRIDE?.bucket || window.STYLE_DEFAULT_SB_BUCKET || "product-images").trim();
   const overrideAiFn = (window.SUPABASE_KEYS_OVERRIDE?.aiFn || window.STYLE_DEFAULT_AI_FN || "style-ai").trim();
@@ -734,8 +739,8 @@ window.loadStyleConfig = function () {
     if (raw) {
       const parsed = JSON.parse(raw);
       return {
-        url: overrideUrl || (parsed.url || "").trim(),
-        key: overrideKey || (parsed.key || "").trim(),
+        url: window.cleanSupabaseUrl(parsed.url) || overrideUrl,
+        key: (parsed.key || "").trim() || overrideKey,
         bucket: (parsed.bucket || overrideBucket).trim(),
         aiFn: (parsed.aiFn || overrideAiFn).trim()
       };
@@ -755,7 +760,7 @@ window.saveStyleConfig = function (url, key, bucket, aiFn) {
     localStorage.setItem(
       SB_CFG_KEY,
       JSON.stringify({
-        url: (url || "").trim(),
+        url: window.cleanSupabaseUrl(url),
         key: (key || "").trim(),
         bucket: (bucket || "product-images").trim(),
         aiFn: (aiFn || "style-ai").trim()
@@ -961,15 +966,33 @@ window.syncAllCatalogAndImagesToSupabase = async function (sbClient, stateProduc
 // ============================================================================
 // ИИ-АССИСТЕНТ «СТИЛЬ AI» (Стилист для клиента + ERP-Аналитик для персонала)
 // ============================================================================
-window.callStyleAi = async function ({ sbUrl, sbKey, aiFn, systemPrompt, history, userText, dbSnapshot }) {
-  const urlBase = (sbUrl || window.STYLE_DEFAULT_SB_URL || "").replace(/\/+$/, "");
-  const key = sbKey || window.STYLE_DEFAULT_SB_KEY || "";
-  const fn = aiFn || "style-ai";
+let cachedDbGeminiKey = "";
 
+window.callStyleAi = async function ({ sbUrl, sbKey, aiFn, systemPrompt, history, userText, dbSnapshot }) {
+  const urlBase = window.cleanSupabaseUrl(sbUrl || window.STYLE_DEFAULT_SB_URL || "");
+  const key = (sbKey || window.STYLE_DEFAULT_SB_KEY || "").trim();
+  const fn = (aiFn || "style-ai").trim();
+
+  const prods = (dbSnapshot?.products || window.STYLE_SEED_PRODUCTS).filter((p) => p.is_published !== false);
+  const orders = dbSnapshot?.orders || window.STYLE_SEED_ORDERS;
+  const staff = dbSnapshot?.staff || window.STYLE_SEED_STAFF;
+  const isStaff = Boolean(dbSnapshot?.isStaff);
+
+  // Обогащаем системный промпт живыми данными из базы Supabase (товары, цены в ₸, артикулы, размеры, сотрудники, заказы)
+  const catalogContext = prods
+    .map((p) => `- ${p.sku} | ${p.brand} «${p.name}» (${p.category_slug}): ${p.base_price} ₸${p.old_price ? ` (старая цена ${p.old_price} ₸, ${p.badge})` : ""}, размеры: ${(p.sizes || []).join(",")}, склад: ${p.stock_qty} шт.`)
+    .join("\n");
+  const staffContext = isStaff
+    ? `\nСОТРУДНИКИ НА СМЕНЕ И ПРОДАЖИ:\n` + staff.map((s) => `- ${s.name} (${s.position}, ${s.department}): ${s.hours} ч, продажи ${s.salesKzt} ₸, план ${s.planPercent}%`).join("\n")
+    : "";
+  const promosContext = `\nПРОМОКОДЫ: ` + window.STYLE_PROMOS.map((pr) => `${pr.code} (-${pr.discount}% от ${pr.min} ₸)`).join(", ");
+  const fullSystemPrompt = `${systemPrompt || ""}\nОтвечай подробно, вежливо и по существу на языке вопроса. Все цены указывай в тенге (₸).\nАКТУАЛЬНЫЙ КАТАЛОГ ИЗ SUPABASE:\n${catalogContext}${promosContext}${staffContext}`;
+
+  // 1. Вызов через Supabase Edge Function (style-ai)
   if (urlBase && key) {
     try {
       const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), 7000);
+      const timer = setTimeout(() => controller.abort(), 6500);
       const res = await fetch(`${urlBase}/functions/v1/${fn}`, {
         method: "POST",
         headers: {
@@ -977,24 +1000,64 @@ window.callStyleAi = async function ({ sbUrl, sbKey, aiFn, systemPrompt, history
           "apikey": key
         },
         body: JSON.stringify({
-          systemPrompt,
+          systemPrompt: fullSystemPrompt,
           history: (history || []).slice(-6)
         }),
         signal: controller.signal
       });
       clearTimeout(timer);
       const data = await res.json().catch(() => ({}));
-      if (res.ok && data?.reply && String(data.reply).trim().length >= 50) {
+      if (res.ok && data?.reply && String(data.reply).trim().length >= 25) {
         return { reply: String(data.reply).trim(), source: `Supabase Edge (${fn})` };
+      }
+    } catch (_) {}
+
+    // 2. Если функция style-ai ещё не задеплоена в панели, берём ключ Gemini из таблицы profiles вашей БД Supabase
+    // и вызываем generativelanguage.googleapis.com (gemini-3.1-flash-lite / gemini-3.8-flash) параллельно
+    try {
+      if (!cachedDbGeminiKey) {
+        const cfgRes = await fetch(
+          `${urlBase}/rest/v1/profiles?id=eq.00000000-0000-0000-0000-000000000099&select=address`,
+          { headers: { "apikey": key } }
+        );
+        const cfgRows = await cfgRes.json().catch(() => []);
+        if (Array.isArray(cfgRows) && cfgRows[0]?.address) {
+          cachedDbGeminiKey = String(cfgRows[0].address).trim();
+        }
+      }
+
+      if (cachedDbGeminiKey) {
+        const models = ["gemini-3.1-flash-lite", "gemini-3.8-flash", "gemini-flash-lite-latest"];
+        const payload = {
+          systemInstruction: { parts: [{ text: fullSystemPrompt }] },
+          contents: (history || []).slice(-6),
+          generationConfig: { temperature: 0.35, maxOutputTokens: 500 }
+        };
+        const enc = encodeURIComponent(cachedDbGeminiKey);
+        const replyText = await Promise.any(
+          models.map(async (m) => {
+            const gRes = await fetch(
+              `https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${enc}`,
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+              }
+            );
+            const gData = await gRes.json().catch(() => ({}));
+            const txt = gData?.candidates?.[0]?.content?.parts?.map((p) => p.text || "").join("").trim();
+            if (!gRes.ok || !txt) throw new Error("empty");
+            return txt;
+          })
+        );
+        if (replyText) {
+          return { reply: replyText, source: "Gemini AI (Supabase Live)" };
+        }
       }
     } catch (_) {}
   }
 
   const q = (userText || "").toLowerCase();
-  const prods = (dbSnapshot?.products || window.STYLE_SEED_PRODUCTS).filter((p) => p.is_published !== false);
-  const orders = dbSnapshot?.orders || window.STYLE_SEED_ORDERS;
-  const staff = dbSnapshot?.staff || window.STYLE_SEED_STAFF;
-  const isStaff = Boolean(dbSnapshot?.isStaff);
 
   if (isStaff) {
     const totalSales = staff.reduce((s, m) => s + Number(m.salesKzt || 0), 0);

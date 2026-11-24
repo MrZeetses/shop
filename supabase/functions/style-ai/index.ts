@@ -11,26 +11,35 @@ let cachedApiKey = '';
 
 async function resolveGeminiKey(): Promise<string> {
   if (cachedApiKey) return cachedApiKey;
+
+  // 1. Проверяем секрет GEMINI_API_KEY в Supabase Edge Functions -> Secrets
   const envKey = Deno.env.get('GEMINI_API_KEY')?.trim();
   if (envKey) {
     cachedApiKey = envKey;
     return envKey;
   }
 
-  const sbUrl = Deno.env.get('SUPABASE_URL') || '';
-  const sbServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') || '';
+  // 2. Автоматический резерв: берём сохранённый ключ из таблицы profiles в вашей БД Supabase
+  const sbUrl = Deno.env.get('SUPABASE_URL') || 'https://zpmapedzbbrfxlmuncbd.supabase.co';
+  const sbServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') || Deno.env.get('SUPABASE_ANON_KEY') || '';
   if (sbUrl && sbServiceKey) {
-    const sb = createClient(sbUrl, sbServiceKey);
-    const { data } = await sb.rpc('get_style_ai_key');
-    if (data) {
-      cachedApiKey = String(data).trim();
-      return cachedApiKey;
-    }
+    try {
+      const sb = createClient(sbUrl, sbServiceKey);
+      const { data } = await sb
+        .from('profiles')
+        .select('address')
+        .eq('id', '00000000-0000-0000-0000-000000000099')
+        .maybeSingle();
+      if (data?.address) {
+        cachedApiKey = String(data.address).trim();
+        return cachedApiKey;
+      }
+    } catch (_) {}
   }
   return '';
 }
 
-async function callModel(url: string, payload: unknown, timeoutMs = 4500): Promise<string> {
+async function callModel(url: string, payload: unknown, timeoutMs = 6500): Promise<string> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
@@ -73,22 +82,22 @@ Deno.serve(async (req: Request) => {
 
     const payload = {
       systemInstruction: { parts: [{ text: systemPrompt || '' }] },
-      contents: (history || []).slice(-6),
-      generationConfig: { temperature: 0.35, maxOutputTokens: 500 },
+      contents: (history || []).slice(-8),
+      generationConfig: { temperature: 0.35, maxOutputTokens: 550 },
     };
 
     const encodedKey = encodeURIComponent(apiKey);
+    // Используем generativelanguage.googleapis.com (работает бесплатно с ключами AQ.... и AIzaSy... без включения Billing и Vertex AI!)
     const fastModels = [
+      'gemini-3.8-flash',
       'gemini-3.1-flash-lite',
-      'gemini-flash-lite-latest',
-      'gemma-4-26b-a4b-it',
-      'gemini-3-flash-preview'
+      'gemini-flash-lite-latest'
     ];
     const endpoints = fastModels.map(
       (m) => `https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${encodedKey}`
     );
 
-    const reply = await Promise.any(endpoints.map((url) => callModel(url, payload, 4500)));
+    const reply = await Promise.any(endpoints.map((url) => callModel(url, payload, 6500)));
 
     return new Response(
       JSON.stringify({ reply }),
